@@ -1,0 +1,39 @@
+<div class="card">
+    <h5 class="card-header">{{this.sesion.usuario}}</h5>
+    <div class="card-body">
+        <div class="col-12 mb-5">
+            <p class="card-text">{{note.nota}}</p>
+        </div>
+      
+        <div class="col-12 mb-5"  *ngFor = "let coment of coments">
+          <p class="card-text">{{coment.comentario}} - <span>{{coment.fecha_emision.substring(0,10)}} {{coment.fecha_emision.substring(11,16)}} hrs</span></p>
+          
+          <a class="btn btn-primary" (click) = "showResponses(coment.id)">Ver respuestas</a>
+
+          <div  >
+            <div  *ngFor = "let response of responses" class="card" style="width: 18rem;">
+              <div class="card-body" *ngIf="coment.id == response.comentario_id">
+                <p class="card-text">{{response.respuesta}}</p>
+                <small>Publicado: {{response.fecha_emision.substring(0,10)}} {{response.fecha_emision.substring(11,16)}} hrs</small>
+                <form class="form-inline mt-2">
+                  <div class="form-group col-10  mb-2">
+                    <input type="text" class="form-control col-12" placeholder="Responder..." name="respuesta" [(ngModel)]="my_response.respuesta">
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2" (click) = "registerResponse(coment.id)">Enviar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          
+
+      </div>
+
+      <form class="form-inline">
+        <div class="form-group col-10  mb-2">
+          <input type="text" class="form-control col-12" placeholder="Escribe un comentario..." name="comentario" [(ngModel)]="coment.comentario">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" (click) = "register()">Enviar</button>
+      </form>
+    </div>
+  </div>

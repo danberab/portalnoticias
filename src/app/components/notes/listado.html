@@ -1,0 +1,22 @@
+
+        
+<form *ngIf="sesion.tipo=='int'">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Contenido</label>
+      <input type="text" class="form-control" name="nota" [(ngModel)]="note.nota">
+    </div>
+    <button type="submit" class="btn btn-primary" (click) ="register()" >Registrar</button>
+  </form>
+  <h1 style="text-align: center;">Colección de noticias</h1>
+   <hr>
+<div class="row mt-5">
+  <div  *ngFor = "let note of notes" class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p class="card-text">{{note.nota}}</p>
+      <a class="btn btn-primary" [routerLink]="['/notes', note.id]">Añadir comentario</a>
+    </div>
+  </div>
+</div>
+<div *ngIf="notes.length ==0" style="text-align: center;">
+No hay datos para mostrar
+</div>
